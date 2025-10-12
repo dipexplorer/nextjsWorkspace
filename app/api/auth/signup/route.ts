@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const body = await request.json();
-    console.log("signup req body: ", body);
+    // console.log("signup req body: ", body);
 
     const { email, username, password } = body;
 

@@ -32,11 +32,9 @@ export default function SignUp() {
       setLoading(true);
 
       const response = await axios.post("/api/auth/signup", user);
-      console.log(response.data);
       toast.success("Account created successfully");
       router.push("/login");
     } catch (error: any) {
-      console.log(error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);

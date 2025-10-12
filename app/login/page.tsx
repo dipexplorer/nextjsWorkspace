@@ -34,10 +34,9 @@ export default function Login() {
       if (response.status === 200) {
         toast.success("Login Successful");
         // Redirect to home page
-        router.push("/");
+        router.push("/profile");
       }
     } catch (error: any) {
-      console.log(error.message);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -69,25 +68,6 @@ export default function Login() {
             onLogin();
           }}
         >
-          {/* Username
-          // <div className="relative">
-          //   <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl transition-colors duration-300 peer-focus:text-purple-500" />
-          //   <input
-          //     id="username"
-          //     type="text"
-          //     value={user.username}
-          //     onChange={(e) => setUser({ ...user, username: e.target.value })}
-          //     placeholder="Username"
-          //     className="peer w-full pl-12 pr-4 py-3 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-xl text-gray-900 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition-all duration-300 shadow-sm hover:shadow-md"
-          //   />
-          //   <label
-          //     htmlFor="username"
-          //     className="absolute left-12 -top-2 text-gray-500 text-sm bg-white px-1 transition-all duration-300 peer-placeholder-shown:top-3 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:-top-2 peer-focus:text-purple-500 peer-focus:text-sm"
-          //   >
-          //     Username
-          //   </label>
-          // </div> */}
-
           {/* Email */}
           <div className="relative">
             <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl transition-colors duration-300 peer-focus:text-purple-500" />
