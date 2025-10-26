@@ -17,13 +17,19 @@ export default function ProfilePage() {
   });
 
   useEffect(() => {
-    const fetchUser = async () => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
       const response = await axios.get("/api/auth/currentuser");
       setUser(response.data.user);
       console.log("Fetched user:", response.data.user);
-    };
-    fetchUser();
-  }, [setUser]);
+    } catch (error: any) {
+      console.error(error.message);
+      toast.error("Failed to fetch user data");
+    }
+  };
 
   const handleEdit = () => {
     alert("Profile updated successfully!");
@@ -50,6 +56,18 @@ export default function ProfilePage() {
           <p className="text-white/90 mt-1">
             Manage your account and personal information
           </p>
+          <h3 className="mt-3 text-white text-lg font-semibold">
+            {user && user.username ? (
+              <Link
+                href={`/profile/${user._id}`}
+                className="underline hover:text-purple-200 transition-all"
+              >
+                {user.username}
+              </Link>
+            ) : (
+              "User not found"
+            )}
+          </h3>
         </div>
 
         <div className="p-8 flex flex-col md:flex-row md:gap-12">
