@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FiUser, FiMail, FiLock } from "react-icons/fi";
@@ -20,7 +21,11 @@ export default function SignUp() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (user.username && user.email && user.password) {
+    if (
+      user.username.length > 0 &&
+      user.email.length > 0 &&
+      user.password.length > 0
+    ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
