@@ -30,6 +30,7 @@ export default function Login() {
     try {
       setLoading(true);
       const response = await axios.post("/api/auth/login", user);
+      console.log(response);
 
       if (response.status === 200) {
         toast.success("Login Successful");
