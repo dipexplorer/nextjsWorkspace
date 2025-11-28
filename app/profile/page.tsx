@@ -24,7 +24,7 @@ export default function ProfilePage() {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get("/api/auth/currentuser");
+      const response = await axios.get("/api/auth/currentuser", {});
       setUser(response.data.user);
       console.log("Fetched user:", response.data.user);
     } catch (error: any) {
@@ -33,8 +33,19 @@ export default function ProfilePage() {
     }
   };
 
-  const handleEdit = () => {
-    alert("Profile updated successfully!");
+  const handleEdit = async () => {
+    try {
+      const res = await axios.put("/api/auth/updateinfo", {
+        username: user.username,
+        email: user.email,
+      });
+      if (res.status == 200) {
+        toast.success("Profile updated successfully!");
+      }
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   const handleLogout = async () => {
