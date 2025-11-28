@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 export enum EmailType {
   VERIFY = "VERIFY",
-  FORGET = "FORGET",
+  RESET = "RESET",
 }
 
 export const sendEmail = async ({
@@ -18,7 +18,7 @@ export const sendEmail = async ({
 }) => {
   try {
     const hashToken = await bcrypt.hash(userId.toString(), 10);
-    const expiry = Date.now() + 360000; // 1 hour
+    const expiry = Date.now() + 3600000; // 1 hour
 
     const updateFields =
       emailType === EmailType.VERIFY
@@ -46,7 +46,9 @@ export const sendEmail = async ({
       html: `<p>Click the link below to ${
         emailType === EmailType.VERIFY ? "Verify your email" : "Reset Password"
       }
-      <a href="${process.env.DOMAIN}/verify?token=${hashToken}">Click Here</a>
+      <a href="${process.env.DOMAIN}/${
+        emailType === EmailType.VERIFY ? "verify" : "reset"
+      }?token=${hashToken}">Click Here</a>
       </p>`,
     };
 

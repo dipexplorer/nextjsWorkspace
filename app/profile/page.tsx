@@ -1,5 +1,6 @@
 // profile/page.tsx
 "use client";
+
 import React, { useState } from "react";
 import { FiEdit, FiLogOut, FiCamera } from "react-icons/fi";
 import axios from "axios";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { EmailType, sendEmail } from "@/helpers/mailer";
 
 export default function ProfilePage() {
   const router = useRouter();
@@ -36,11 +38,24 @@ export default function ProfilePage() {
   };
 
   const handleLogout = async () => {
-    alert("Logged out!");
     try {
       await axios.get("/api/auth/logout");
       toast.success("Logged out successfully!");
       router.push("/");
+    } catch (error: any) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  const resetPassword = async () => {
+    try {
+      const res = await axios.post("/api/auth/resetPassword", {
+        email: user.email,
+      });
+      if (res.status == 200) {
+        toast.success("Password reset link sent to your email");
+      }
     } catch (error: any) {
       console.log(error);
       toast.error(error.message);
@@ -113,6 +128,13 @@ export default function ProfilePage() {
                   className="bg-purple-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-purple-600 transition-all"
                 >
                   Save Changes
+                </button>
+                {/* RESET PASSWORD */}
+                <button
+                  onClick={resetPassword}
+                  className="bg-orange-500 text-white px-6 py-3 rounded-xl shadow-lg hover:bg-orange-600 transition-all"
+                >
+                  Reset Password
                 </button>
               </div>
             </div>
