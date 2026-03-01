@@ -49,6 +49,7 @@ export default function sigupPage() {
       />
       <br />
       <button type="submit">Signup</button>
+      <br />
       <Link href="/login">Visit login</Link>
     </div>
   );
