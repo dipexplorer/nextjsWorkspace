@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import React from "react";
-import Router from "next/router";
 import axios from "axios";
+import React from "react";
+import Link from "next/link";
+import Router from "next/router";
 
 export default function LoginPage() {
   const [user, setUser] = React.useState({
@@ -23,7 +23,9 @@ export default function LoginPage() {
         id="username"
         placeholder="Enter your username"
         value={user.username}
-        onChange={(e) => setUser({ ...user, username: e.target.value })}
+        onChange={(e) => {
+          setUser({ ...user, username: e.target.value });
+        }}
       />
       <br />
       <label htmlFor="password">Password</label>

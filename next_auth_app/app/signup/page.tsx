@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import React from "react";
-import Router from "next/router";
 import axios from "axios";
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function sigupPage() {
   const [user, setUser] = React.useState({
