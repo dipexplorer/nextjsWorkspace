@@ -1,35 +1,39 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    required: [true, "Plz provide valid username"],
-    unique: true,
-    trim: true,
-    minLength: 3,
-    maxLength: 20,
-    lowercase: true,
-  },
-  email: {
-    type: String,
-    required: [true, "Plz provide valid email"],
-    unique: true,
-    trim: true,
-    lowercase: true,
-  },
-  password: {
-    type: true,
-    required: [true, "Plz provide valid password"],
-    minLength: 6,
-  },
-  isVerified: {
-    type: Boolean,
-    default: false,
-  },
-  resetPasswordToken: String,
-  resetPasswordExpiry: Boolean,
-  resetEmailToken: String,
-  resetEmailExpiry: Boolean,
+    username: {
+        type: String,
+        required: [true, "Plz provide valid username"],
+        unique: true,
+        trim: true,
+        minLength: 3,
+        maxLength: 20,
+        lowercase: true,
+    },
+    email: {
+        type: String,
+        required: [true, "Plz provide valid email"],
+        unique: true,
+        trim: true,
+        lowercase: true,
+    },
+    password: {
+        type: true,
+        required: [true, "Plz provide valid password"],
+        minLength: 6,
+    },
+    isVerified: {
+        type: Boolean,
+        default: false,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+    },
+    resetPasswordToken: String,
+    resetPasswordExpiry: Boolean,
+    resetEmailToken: String,
+    resetEmailExpiry: Boolean,
 });
 
 // Password hamesa hash hona sahiye
