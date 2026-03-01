@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { BlockList } from "net";
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -50,9 +49,7 @@ userSchema.methods.comparePassword = async function (password) {
 };
 */
 
-const User = mongoose.models.users || mongoose.model("User", userSchema);
-
-export default User;
+export const User = mongoose.models.users || mongoose.model("User", userSchema);
 
 /*
 NOTES:
