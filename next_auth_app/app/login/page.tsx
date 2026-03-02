@@ -3,7 +3,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
     const router = useRouter();

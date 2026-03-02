@@ -9,16 +9,16 @@ connectDB();
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { email, password } = body;
+        const { username, password } = body;
 
-        if (!email || !password) {
+        if (!username || !password) {
             return NextResponse.json(
                 { msg: "Please fill all fields" },
                 { status: 400 },
             );
         }
 
-        const existingUser = await User.findOne({ email });
+        const existingUser = await User.findOne({ username });
         if (!existingUser) {
             return NextResponse.json(
                 { msg: "User does not exists" },
@@ -39,10 +39,10 @@ export async function POST(req: NextRequest) {
 
         const tokenData = {
             id: existingUser._id,
-            email: existingUser.email,
+            username: existingUser.username,
         };
 
-        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
+        const token = jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
             expiresIn: "1h",
         });
 
@@ -57,6 +57,7 @@ export async function POST(req: NextRequest) {
 
         return response;
     } catch (err: any) {
+        console.log(err);
         return NextResponse.json({ msg: err.message }, { status: 500 });
     }
 }

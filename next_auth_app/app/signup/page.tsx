@@ -3,7 +3,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function sigupPage() {
     const router = useRouter();
@@ -77,7 +77,7 @@ export default function sigupPage() {
                 placeholder="password"
             />
             <br />
-            <button type="submit">
+            <button type="button" onClick={singUp} disabled={disableButton}>
                 {disableButton ? "Disabled" : "Signup"}
             </button>
             <br />

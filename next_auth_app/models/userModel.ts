@@ -5,10 +5,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Plz provide valid username"],
         unique: true,
-        trim: true,
-        minLength: 3,
-        maxLength: 20,
-        lowercase: true,
     },
     email: {
         type: String,
@@ -18,7 +14,7 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
     },
     password: {
-        type: true,
+        type: String,
         required: [true, "Plz provide valid password"],
         minLength: 6,
     },
@@ -53,7 +49,7 @@ userSchema.methods.comparePassword = async function (password) {
 };
 */
 
-export const User = mongoose.models.users || mongoose.model("User", userSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
 
 /*
 NOTES:
