@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
-export async function POST() {
+export async function GET() {
     try {
+        // hum response bana raha he taki session cokkies ko remove kar sake
         const response = NextResponse.json(
             {
                 message: "Logout successful",
+                success: true,
             },
             { status: 200 },
         );
@@ -16,7 +18,6 @@ export async function POST() {
 
         return response;
     } catch (err: any) {
-        console.log(err);
         return NextResponse.json(
             {
                 error: err.message,
