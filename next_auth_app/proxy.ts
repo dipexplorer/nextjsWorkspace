@@ -16,6 +16,7 @@ export function proxy(request: NextRequest) {
     }
 }
 
+// middleware only run on this routes
 export const config = {
-    matcher: ["/", "/login", "/logout", "/profile"],
+    matcher: ["/", "/login", "/logout", "/profile/:path*", "/signup"],
 };
