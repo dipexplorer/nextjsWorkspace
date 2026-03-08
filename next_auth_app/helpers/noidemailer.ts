@@ -18,7 +18,7 @@ export const sendEmail = async ({ email, emailType, userId }: emailParams) => {
                 ? `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`
                 : `${process.env.DOMAIN}/resetpassword?token=${hashedToken}`;
 
-        const user = User.findById(userId);
+        const user = await User.findById(userId);
         if (!user) throw new Error("User not found");
 
         // create reusable transporter object using the default SMTP transport
