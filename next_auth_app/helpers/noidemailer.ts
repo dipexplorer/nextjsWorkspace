@@ -10,25 +10,27 @@ type emailParams = {
 
 export const sendEmail = async ({ email, emailType, userId }: emailParams) => {
     try {
+        const userIdString = String(userId);
+
         // create token
-        const hashedToken = await bcrypt.hash(userId, 10);
+        const hashedToken = await bcrypt.hash(userIdString, 10);
 
         const url =
             emailType === "VERIFY"
                 ? `${process.env.DOMAIN}/verifyemail?token=${hashedToken}`
                 : `${process.env.DOMAIN}/resetpassword?token=${hashedToken}`;
 
-        const user = await User.findById(userId);
+        const user = await User.findById(userIdString);
         if (!user) throw new Error("User not found");
 
         // create reusable transporter object using the default SMTP transport
         if (emailType == "VERIFY") {
-            await User.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(userIdString, {
                 verifyEmailToken: hashedToken,
                 verifyEmailExpiry: Date.now() + 3600000,
             });
         } else if (emailType == "RESET") {
-            await User.findByIdAndUpdate(userId, {
+            await User.findByIdAndUpdate(userIdString, {
                 resetPasswordToken: hashedToken,
                 resetPasswordExpiry: Date.now() + 3600000,
             });

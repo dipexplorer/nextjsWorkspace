@@ -1,10 +1,17 @@
 "use client";
 import axios from "axios";
+import { useParams } from "next/navigation";
 
-export default async function UserProfile({ params }: any) {
-    const { id } = params;
+export default function UserProfile() {
+    const params = useParams<{ id: string }>();
+    const id = params?.id;
 
     async function sendResetPasswordEmail() {
+        if (!id) {
+            alert("User id not found");
+            return;
+        }
+
         try {
             const res = await axios.post("/api/user/resetpassword", {
                 userId: id,

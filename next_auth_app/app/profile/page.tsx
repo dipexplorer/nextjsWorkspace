@@ -54,7 +54,7 @@ export default function Profile() {
             <p className="text-lg">
                 You can add more information about yourself here.
             </p>
-            <Link href={`/profile/${data._id}}`}>Update Profile</Link>
+            <Link href={`/profile/${data._id}`}>Update Profile</Link>
             <hr />
             <button
                 onClick={logout}

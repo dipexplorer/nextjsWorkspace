@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
         await sendEmail({
             email: user_email,
             emailType: "RESET",
-            userId: user._id,
+            userId: user._id.toString(),
         });
 
         return NextResponse.json(
