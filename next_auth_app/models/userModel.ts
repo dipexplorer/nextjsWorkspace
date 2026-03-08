@@ -27,9 +27,9 @@ const userSchema = new mongoose.Schema({
         default: false,
     },
     resetPasswordToken: String,
-    resetPasswordExpiry: Boolean,
-    resetEmailToken: String,
-    resetEmailExpiry: Boolean,
+    resetPasswordExpiry: Date,
+    verifyEmailToken: String,
+    verifyEmailExpiry: Date,
 });
 
 // Password hamesa hash hona sahiye
